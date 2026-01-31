@@ -1,12 +1,8 @@
 import app from "../backend/src/server.js";
 import { connectDB } from "../backend/src/lib/db.js";
 
-let isConnected = false;
+// Connect to DB on cold start
+connectDB().catch(err => console.error("DB connection error:", err));
 
-export default async function handler(req, res) {
-    if (!isConnected) {
-        await connectDB();
-        isConnected = true;
-    }
-    return app(req, res);
-}
+export default app;
+
