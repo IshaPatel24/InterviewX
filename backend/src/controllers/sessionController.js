@@ -48,7 +48,8 @@ export async function createSession(req, res) {
         console.error("FATAL: Error in createSession controller:", error);
         res.status(500).json({
             message: "Internal Server Error",
-            error: process.env.NODE_ENV === "development" ? error.message : "Check server logs"
+            error: error.message,
+            stack: error.stack
         });
     }
 }
