@@ -3,11 +3,15 @@
     "outputDirectory": "frontend/dist",
     "rewrites": [
         {
-            "source": "/api/(.*)",
+            "source": "/api/:path*",
             "destination": "/api/index.js"
         },
         {
-            "source": "/((?!api/).*)",
+            "source": "/health",
+            "destination": "/api/index.js"
+        },
+        {
+            "source": "/:path*",
             "destination": "/index.html"
         }
     ]
